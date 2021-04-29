@@ -1,5 +1,6 @@
 
 public interface EventIncendieListener {
+	
+	public void onEvent (EventIncendie event);
 
-	 public void onEvent (EventIncendie event);
 }
