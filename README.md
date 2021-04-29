@@ -1,5 +1,5 @@
 # Info641_Alarmes
-Un grand laboratoire de physique comporte plusieurs risques liés aux :
+Un grand laboratoire de physique comporte plusieurs risques liés aux :\n
   • incendies qui peuvent surgir dans chacun des bâtiments qui le composent,
   • émission des radiations,
   • émission des gaz toxiques.
