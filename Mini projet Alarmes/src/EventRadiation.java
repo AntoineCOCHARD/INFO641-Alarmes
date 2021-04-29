@@ -15,7 +15,7 @@ public class EventRadiation extends EventObject{
 		this.date_creation = new Date();
 	}
 	
-	public void affiche() {
+	public void to_string() {
 		System.out.println("Date d'apparition de l'anomalie : " + format.format(this.date_creation)+ "  Radiations de niveau : " + this.niveau_rad);
 	}
 

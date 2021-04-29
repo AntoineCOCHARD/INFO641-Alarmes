@@ -4,7 +4,7 @@ public class CapteurGaz implements EventGazListener {
 	@Override
 	public void onEvent(EventGaz event) {
 		System.out.println("Alerte gaz toxique !");
-		event.affiche();
+		event.to_string();
 	}
 
 }	
