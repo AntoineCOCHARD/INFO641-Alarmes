@@ -3,18 +3,44 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.EventObject;
 
-public class EventIncendie extends EventObject{
-	private Date date_creation;
-	private DateFormat format;
+public class EventIncendie extends Event{
 
-	public EventIncendie(Object source) {
+	public EventIncendie(Object source, String lieu_a, String nivAlarme) {
 		super(source);
-		this.format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		this.date_creation = new Date();
+		this.typeEvent = "Incendie";
+		this.lieu = lieu_a;
+		this.nivAlarme = nivAlarme;
 	}
-	
-	public void to_string() {
-		System.out.println("Date d'apparition de l'anomalie : " + format.format(this.date_creation));
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+	@Override
+	public String getTypeEvent() {
+		// TODO Auto-generated method stub
+		return super.getTypeEvent();
+	}
+
+	@Override
+	public Date getDate() {
+		// TODO Auto-generated method stub
+		return super.getDate();
+	}
+
+	@Override
+	public String getLieuAlarme() {
+		// TODO Auto-generated method stub
+		return super.getLieuAlarme();
+	}
+
+	@Override
+	public String getDetail() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

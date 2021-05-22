@@ -3,24 +3,50 @@ import java.util.*;
 import java.text.DateFormat;
 
 
-public class EventGaz extends EventObject {
-	private String type_gaz;
-	private Date date_creation;
-	private DateFormat format;
+public class EventGaz extends Event {
+	private String typeGaz;
 
-	public EventGaz(Object source, String type_du_gaz) {
+	public EventGaz(Object source, String type_du_gaz, String lieu_a, String nivAlarme) {
 		super(source);
-		this.type_gaz = type_du_gaz;
-		this.format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		this.typeGaz = type_du_gaz;
 		this.date_creation = new Date();
+		this.typeEvent = "Gaz";
+		this.lieu = lieu_a;
+		this.nivAlarme = nivAlarme;
 	}
 	
-	public void to_string() {
-		System.out.println("Date d'apparition de l'anomalie : " + format.format(this.date_creation) + "  Présence de : " + this.type_gaz);
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
-	
-	public String get_type() {
-		return this.type_gaz;
+
+	@Override
+	public String getTypeEvent() {
+		// TODO Auto-generated method stub
+		return super.getTypeEvent();
+	}
+
+	@Override
+	public Date getDate() {
+		// TODO Auto-generated method stub
+		return super.getDate();
+	}
+
+	@Override
+	public String getLieuAlarme() {
+		// TODO Auto-generated method stub
+		return super.getLieuAlarme();
+	}
+
+	public String getType() {
+		return this.typeGaz;
+	}
+
+	@Override
+	public String getDetail() {
+		// TODO Auto-generated method stub
+		return this.typeGaz;
 	}
 	
 }
