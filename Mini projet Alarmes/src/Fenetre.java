@@ -29,18 +29,21 @@ public class Fenetre extends JFrame implements ActionListener, ChangeListener {
 	private String res;
 	private int entier;
 	private JSlider nivRadiations = new JSlider(JSlider.HORIZONTAL,0, 100, 0);
-	private EventSource s = new EventSource();
+	private EventSource source = new EventSource();
 	private JLabel probN = new JLabel("Veuillez choisir un niveau d'alarme correct");
 	private JLabel probB = new JLabel("Veuillez choisir une localisation correcte");
-
+	private MoniteurA moniA;
+	private MoniteurB moniB;
 	
-	public Fenetre() {
+	public Fenetre(MoniteurA valMoniA, MoniteurB valMoniB) {
 		this.setTitle("Alarmes");
 		this.setSize(400, 300);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(10,10);
+		this.moniA = valMoniA;
+		this.moniB = valMoniB;
 		
 		this.getContentPane().add(choixBat);
 		choixBat.setBounds(150, 20, 100, 30);
@@ -61,7 +64,13 @@ public class Fenetre extends JFrame implements ActionListener, ChangeListener {
 		JButton bouton2 = new JButton("Declencher l'alarme");
 		this.getContentPane().add(bouton2);
 		bouton2.addActionListener(this);
-		bouton2.setBounds(125, 220, 150, 30);
+		bouton2.setBounds(10, 220, 150, 30);
+		
+		JButton bouton3 = new JButton("Historique");
+		this.getContentPane().add(bouton3);
+		bouton3.addActionListener(this);
+		bouton3.setBounds(225, 220, 150, 30);
+		
 		this.setVisible(true);
 		champDeTexte.addFocusListener(new FocusAdapter() {
 		    @Override
@@ -119,16 +128,20 @@ public class Fenetre extends JFrame implements ActionListener, ChangeListener {
 			
 			if (anomalieChoisie == "Gaz") {
 				res = champDeTexte.getText();
-				s.genGazEvent(res,batChoisi,nivChoisi);
+				source.genGazEvent(res,batChoisi,nivChoisi);
 			}
 			
 			if (anomalieChoisie == "Radiation") {
-				s.genRadiationEvent(entier, batChoisi,nivChoisi);
+				source.genRadiationEvent(entier, batChoisi,nivChoisi);
 			}
 			
 			if (anomalieChoisie == "Incendie") {
-				s.genIncendieEvent(batChoisi,nivChoisi);
+				source.genIncendieEvent(batChoisi,nivChoisi);
 			}
+			
+			
+			nivRadiations.setVisible(false);
+			champDeTexte.setVisible(false);
 		}
 		if (anomalieChoisie == "Radiation"){
             champDeTexte.setVisible(false);
@@ -155,18 +168,22 @@ public class Fenetre extends JFrame implements ActionListener, ChangeListener {
 
 		}
 		
+		if (component == "Historique") {
+			
+			Historique histo = new Historique(moniA, moniB);
+		}
 	}
 	
 	public void addIncendieListener(EventIncendieListener c) {
-		s.addIncendieListener(c);
+		source.addIncendieListener(c);
 	}
 	
 	public void addGazListener(EventGazListener c) {
-		s.addGazListener(c);
+		source.addGazListener(c);
 	}
 
 	public void addRadiationListener(EventRadiationListener c) {
-		s.addRadiationListener(c);
+		source.addRadiationListener(c);
 	}
 
 }

@@ -19,8 +19,9 @@ import javax.swing.JTextField;
 public class MoniteurA extends JFrame implements EventIncendieListener, EventGazListener, ActionListener {
 	
 	ArrayList<Event> alarmesRecuesA = new ArrayList<Event>();
-	DefaultComboBoxModel<Event>  event = new DefaultComboBoxModel<Event> ( );
-	private JComboBox listeEvent = new JComboBox(event);
+	ArrayList<Event> sauvegardeAlarmesRecuesA = new ArrayList<Event>();
+	DefaultComboBoxModel<Event>  event = new DefaultComboBoxModel<Event> ();
+	private JComboBox<Event> listeEvent = new JComboBox<Event>(event);
 	private JLabel probE = new JLabel ("Veuillez choisir une alerte");
 
 
@@ -46,19 +47,31 @@ public class MoniteurA extends JFrame implements EventIncendieListener, EventGaz
 		this.getContentPane().add(bouton);
 		bouton.setBounds(200, 200, 100, 30);
 		bouton.addActionListener(this);
+		
 		JButton bouton2 = new JButton("Traitée");
 		this.getContentPane().add(bouton2);
 		bouton2.setBounds(520, 200, 100, 30);
 		bouton2.addActionListener(this);
+		
 		listeEvent.setBounds(100, 30, 600, 30);
 		this.getContentPane().add(listeEvent);
 		this.setVisible(true);
 		
 	}
+	
+	public ArrayList<Event> getListe() {
+		return this.sauvegardeAlarmesRecuesA;
+	}
+	
+	public void effListe() {
+		this.sauvegardeAlarmesRecuesA.clear();
+	}
 
 	public void actionPerformed(ActionEvent e){
         Event selectionEvent = (Event) listeEvent.getSelectedItem();
         String component = e.getActionCommand();
+        sauvegardeAlarmesRecuesA.add(selectionEvent);
+        
         if (component=="Détails") {
         	probE.setVisible(false);
         	try{
@@ -70,6 +83,7 @@ public class MoniteurA extends JFrame implements EventIncendieListener, EventGaz
     			probE.setVisible(true);
         	}
             alarmesRecuesA.add(selectionEvent);
+            
         }
 
         if (component=="Traitée") {

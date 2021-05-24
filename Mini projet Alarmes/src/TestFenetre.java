@@ -1,7 +1,10 @@
 
 public class TestFenetre {
 	public static void main(String[] args){
-		Fenetre fen = new Fenetre();
+		MoniteurA moniA = new MoniteurA();
+		MoniteurB moniB = new MoniteurB();
+		
+		Fenetre fen = new Fenetre(moniA, moniB);
 		ListenerIncendie c1 = new ListenerIncendie();
 		fen.addIncendieListener(c1);
 		
@@ -11,11 +14,11 @@ public class TestFenetre {
 		ListenerRadiation c3 = new ListenerRadiation();
 		fen.addRadiationListener(c3);
 		
-		MoniteurA moniA = new MoniteurA();
+
 		fen.addIncendieListener(moniA);
 		fen.addGazListener(moniA);
 		
-		MoniteurB moniB = new MoniteurB();
+
 		fen.addGazListener(moniB);
 		fen.addRadiationListener(moniB);
 		

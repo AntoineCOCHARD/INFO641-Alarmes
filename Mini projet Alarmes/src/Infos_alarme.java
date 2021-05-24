@@ -21,7 +21,7 @@ public class Infos_alarme extends JFrame implements ActionListener{
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 		this.setLocation(410,10);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		/*this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 		
 		if (eventChoisi.getNivAlarme() =="1") {
 			this.getContentPane().setBackground(Color.YELLOW);

@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 public class MoniteurB extends JFrame implements EventGazListener, EventRadiationListener, ActionListener {
 	
 	ArrayList<Event> alarmesRecuesB = new ArrayList<Event>();
+	ArrayList<Event> sauvegardeAlarmesRecuesB = new ArrayList<Event>();
 	DefaultComboBoxModel<Event>  event = new DefaultComboBoxModel<Event> ( );
 	private JComboBox listeEvent = new JComboBox(event);
 	private JLabel probE = new JLabel ("Veuillez choisir une alerte");
@@ -51,9 +52,19 @@ public class MoniteurB extends JFrame implements EventGazListener, EventRadiatio
 		this.setVisible(true);
 	}
 	
+	public ArrayList<Event> getListe() {
+		return this.sauvegardeAlarmesRecuesB;
+	}
+
+	public void effListe() {
+		this.sauvegardeAlarmesRecuesB.clear();
+	}
+	
 	public void actionPerformed(ActionEvent e) {
         Event selectionEvent = (Event) listeEvent.getSelectedItem();
         String component = e.getActionCommand();
+        sauvegardeAlarmesRecuesB.add(selectionEvent);
+        
         if (component=="Détails") {
         	probE.setVisible(false);
         	try{
